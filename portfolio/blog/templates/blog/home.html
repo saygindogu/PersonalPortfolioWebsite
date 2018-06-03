@@ -1,12 +1,12 @@
 <html lang="en">
 <head>
+    {% load staticfiles %}
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <link rel="icon" href="../../../../favicon.ico">
+    <meta name="description" content="Home Page for a simple Portfolio Website">
+    <meta name="author" content="Z. Saygın Doğu">
 
-    <title>Album example for Bootstrap</title>
+    <title>Saygın's Blog</title>
 
     <!-- Bootstrap core CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
@@ -18,17 +18,18 @@
 
 <header>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <a class="navbar-brand" href="#">Z. Saygın Doğu</a>
+        <a class="navbar-brand" href="{% url 'home' %}">Z. Saygın Doğu</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
                 aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav ml-auto ">
-                <a class="nav-item nav-link" href="#">Twitter</a>
-                <a class="nav-item nav-link" href="#">Resume</a>
-                <a class="nav-item nav-link active" href="#">Blog</a>
+                <a class="nav-item nav-link" href="https://twitter.com/cawcav">Twitter</a>
+                <a class="nav-item nav-link" href="{% static 'resume.pdf' %}">Resume</a>
+                <a class="nav-item nav-link active" href="{% url 'allblogs' %}">Blog</a>
             </div>
+            s
         </div>
     </nav>
 </header>
@@ -44,7 +45,7 @@
     </div>
 
     {% for blog in blogs.all %}
-    <h3><a href=""> {{ blog.title}}</a></h3>
+    <h3><a href={% url 'detail' blog.id %}> {{ blog.title}}</a></h3>
     <p><img class="img-fluid" width="200" height="200" src="{{blog.image.url}}"/></p>
     <p>{{ blog.pretty_publication_date }}</p>
     <p> {{ blog.summary }}</p>
